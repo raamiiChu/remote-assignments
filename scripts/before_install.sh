@@ -9,6 +9,8 @@ nvm install node
 DIR="/home/ec2-user/appwork-school"
 if [ -d "$DIR" ]; then
   echo "${DIR} exists"
+  sudo rm -r ${DIR}
+  mkdir ${DIR}
 else
   echo "Creating ${DIR} directory"
   mkdir ${DIR}
