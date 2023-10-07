@@ -1,11 +1,13 @@
 require("dotenv").config();
 
 const express = require("express");
+const bcrypt = require("bcrypt");
 
 const mysql = require("mysql2/promise");
 
 const app = express();
 const port = 3000;
+const saltRounds = 10;
 
 // Create the connection to database
 async function connectToMysql() {
@@ -157,24 +159,40 @@ app.post("/users", async (req, res) => {
         return res.status(409).send("Email Already Exists");
     }
 
-    // Add a new user
-    await connection.execute(
-        `INSERT INTO users(name, email, password) VALUES("${name}", "${email}", "${password}")`
-    );
+    // hash a password
+    bcrypt.genSalt(saltRounds, (err, salt) => {
+        if (err) {
+            res.status(500).send("Can not generate salt");
+        }
 
-    let [newUser] = await connection.execute(
-        `SELECT * from users WHERE email = "${email}"`
-    );
+        bcrypt.hash(password, salt, async (err, hash) => {
+            if (err) {
+                res.status(500).send("Can not hash your password");
+            }
 
-    // Get new user's id
-    let { id } = newUser[0];
+            // Store hash in your password DB
+            password = hash;
 
-    // Send the results
-    res.status(200).json({
-        data: {
-            user: { id, name, email },
-            "request-date": req.headers["request-date"],
-        },
+            // Add a new user
+            await connection.execute(
+                `INSERT INTO users(name, email, password) VALUES("${name}", "${email}", "${password}")`
+            );
+
+            let [newUser] = await connection.execute(
+                `SELECT * from users WHERE email = "${email}"`
+            );
+
+            // Get new user's id
+            let { id } = newUser[0];
+
+            // Send the results
+            res.status(200).json({
+                data: {
+                    user: { id, name, email },
+                    "request-date": req.headers["request-date"],
+                },
+            });
+        });
     });
 });
 
