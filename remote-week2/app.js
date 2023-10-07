@@ -96,9 +96,13 @@ app.get("/users", async (req, res) => {
     }
 
     // Try to find user
-    let [foundUser] = await connection.execute(
-        `SELECT * from users WHERE id = ${id}`
-    );
+    try {
+        let [foundUser] = await connection.execute(
+            `SELECT * from users WHERE id = ${id}`
+        );
+    } catch (error) {
+        return res.status(400).send("ID should be an integer");
+    }
 
     // Did not find user
     if (foundUser.length === 0) {
