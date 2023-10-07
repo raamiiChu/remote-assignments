@@ -96,8 +96,9 @@ app.get("/users", async (req, res) => {
     }
 
     // Try to find user
+    let foundUser;
     try {
-        let [foundUser] = await connection.execute(
+        [foundUser] = await connection.execute(
             `SELECT * from users WHERE id = ${id}`
         );
     } catch (error) {
