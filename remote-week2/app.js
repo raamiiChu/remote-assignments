@@ -1,7 +1,6 @@
 require("dotenv").config();
 
 const express = require("express");
-const bodyParser = require("body-parser");
 
 const mysql = require("mysql2/promise");
 
@@ -9,22 +8,17 @@ const app = express();
 const port = 3000;
 
 // Create the connection to database
-async function connectToMysql(res) {
-    try {
-        const connection = await mysql.createConnection({
-            host: process.env.APPWORK_RDS_HOST,
-            port: process.env.APPWORK_RDS_PORT,
-            user: process.env.APPWORK_RDS_USER,
-            database: process.env.APPWORK_RDS_DATABASE,
-            password: process.env.APPWORK_RDS_PASSWORD,
-        });
+async function connectToMysql() {
+    const connection = await mysql.createConnection({
+        host: process.env.APPWORK_RDS_HOST,
+        port: process.env.APPWORK_RDS_PORT,
+        user: process.env.APPWORK_RDS_USER,
+        database: process.env.APPWORK_RDS_DATABASE,
+        password: process.env.APPWORK_RDS_PASSWORD,
+    });
 
-        console.log("Connect to DB!");
-        return connection;
-    } catch (error) {
-        console.log(error);
-        return res.status(500).send("Can not connect to DB");
-    }
+    console.log("Connect to DB!");
+    return connection;
 }
 
 // Data validation
@@ -63,7 +57,7 @@ function validatePassword(password) {
 }
 
 // middleware
-app.use(bodyParser.json());
+app.use(express.json());
 app.use((req, res, next) => {
     req.headers["content-type"] = "application/json";
 
@@ -84,10 +78,20 @@ app.get("/healthcheck", (req, res) => {
 
 // User Query API
 app.get("/users", async (req, res) => {
-    // Create the connection to database
-    const connection = await connectToMysql(res);
-
     let { id } = req.query;
+    let connection;
+
+    // check id
+    if (!id) {
+        return res.status(400).send("ID should not be empty");
+    }
+
+    // Create the connection to database
+    try {
+        connection = await connectToMysql(res);
+    } catch (error) {
+        return res.status(500).send("Can not connect to DB");
+    }
 
     // Try to find user
     let [foundUser] = await connection.execute(
@@ -114,6 +118,7 @@ app.get("/users", async (req, res) => {
 // User Sign Up API
 app.post("/users", async (req, res) => {
     let { name, email, password } = req.body;
+    let connection;
 
     // Data validation
     if (!validName(name)) {
@@ -136,7 +141,11 @@ app.post("/users", async (req, res) => {
     }
 
     // Create the connection to database
-    const connection = await connectToMysql(res);
+    try {
+        connection = await connectToMysql(res);
+    } catch (error) {
+        return res.status(500).send("Can not connect to DB");
+    }
 
     // Try to find user
     let [foundUser] = await connection.execute(
