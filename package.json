@@ -6,7 +6,6 @@
     "dependencies": {
         "asynckit": "^0.4.0",
         "axios": "^1.5.0",
-        "body-parser": "^1.20.2",
         "combined-stream": "^1.0.8",
         "delayed-stream": "^1.0.0",
         "dotenv": "^16.3.1",
