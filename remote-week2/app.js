@@ -62,9 +62,7 @@ function validatePassword(password) {
 app.use(express.json());
 app.use((req, res, next) => {
     req.headers["content-type"] = "application/json";
-
-    req.headers["request-date"] = new Date().toISOString();
-
+    req.headers["request-date"] = new Date().toUTCString();
     next();
 });
 
