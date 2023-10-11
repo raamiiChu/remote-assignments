@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+
+import PostData from "./components/getPostData.js";
 
 const App = () => {
-    return <div></div>;
+    return <PostData />;
 };
 
 export default App;
