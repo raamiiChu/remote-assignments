@@ -18,10 +18,10 @@ const PostBox = styled.div`
     box-shadow: 0 0 0.25rem 0.125rem rgba(0, 0, 0, 0.2);
 
     // RWD
-    @media screen and (max-width: 992px) {
+    @media screen and (max-width: 1024px) {
         width: 45%;
     }
-    @media screen and (max-width: 576px) {
+    @media screen and (max-width: 640px) {
         width: 95%;
     }
 `;
@@ -41,7 +41,7 @@ const Title = styled.h2`
     overflow: hidden;
     text-overflow: ellipsis;
 
-    @media screen and (max-width: 992px) {
+    @media screen and (max-width: 1024px) {
         font-size: 1.25rem;
     }
 `;
@@ -61,7 +61,7 @@ const Content = styled.p`
     overflow: hidden;
     text-overflow: ellipsis;
 
-    @media screen and (max-width: 576px) {
+    @media screen and (max-width: 640px) {
         font-size: 1rem;
         text-indent: 2rem;
     }
@@ -78,10 +78,10 @@ const Reply = styled.div`
         opacity: 0.8;
     }
 
-    @media screen and (max-width: 992px) {
+    @media screen and (max-width: 1024px) {
         width: 50%;
     }
-    @media screen and (max-width: 576px) {
+    @media screen and (max-width: 640px) {
         width: 90%;
     }
 
