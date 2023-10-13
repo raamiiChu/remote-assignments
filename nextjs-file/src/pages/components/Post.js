@@ -33,7 +33,7 @@ export default function Post({ count, title, content }) {
         <div
             className={`
                 w-[95%] sm:w-[45%] lg:w-[30%]
-                max-h-[500px] mx-[1%] my-[2%] 
+                max-h-[600px] mx-[1%] my-[2%] 
                 px-6 py-4 
                 border-2 border-gray-400 rounded-xl 
                 shadow-md
@@ -50,7 +50,7 @@ export default function Post({ count, title, content }) {
             <p
                 className={`
                     my-4 py-1 text-base sm:text-xl 
-                    indent-8 sm:indent-10 line-clamp-5
+                    indent-8 sm:indent-10 line-clamp-8
                 `}
             >
                 {content}
@@ -62,6 +62,7 @@ export default function Post({ count, title, content }) {
                     hover:opacity-90 hover:cursor-pointer
                     active:opacity-80 active:cursor-pointer
                 `}
+                role="button"
             >
                 <button
                     className={`
