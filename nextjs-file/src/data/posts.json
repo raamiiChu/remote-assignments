@@ -1,0 +1,38 @@
+[
+    {
+        "id": 0,
+        "count": 5,
+        "title": "Just a Sample Post",
+        "content": "This is a sample post."
+    },
+    {
+        "id": 1,
+        "count": 45,
+        "title": "Why do we use Node.js? What does it do?",
+        "content": "Node.js 是一個執行環境，允許在 server 端執行 JS 程式碼。因為 Node.js 高效、非同步、支援跨平台等特性，使其成為開發網頁和 APP 的主流套件之一"
+    },
+    {
+        "id": 2,
+        "count": 2,
+        "title": "Explain the Styled-Component you made. What's CSS-in-JS, and how does it help compared to regular CSS?",
+        "content": "我製作的 Styled-Component 採用三欄式格式，並且會根據網頁寬度調整成雙欄或單欄。CSS-in-JS 讓開發者能直接撰寫在 JS 檔案內撰寫 CSS。相比於原生的 CSS，Styled-Component 整合了 SCSS 以及 PostCSS 的優勢，讓開發人員能用更簡潔的語法來管理 CSS 屬性（i.e. 巢狀結構）"
+    },
+    {
+        "id": 3,
+        "count": 134,
+        "title": "Discuss useState and useEffect. How did you use them?",
+        "content": "useState、useEffect 是 React Hooks 的一種，主要是為了彌補 Function Components 缺少的生命週期（早期多使用 Class Components）。useState 負責管理狀態（State），需要宣告初始值與一個更新該值的函數；useEffect 負責管理某個 State 或頁面改變時，要執行的 function。"
+    },
+    {
+        "id": 4,
+        "count": 443,
+        "title": "Describe Client-Side Rendering vs. Server-Side Rendering. How did you achieve Server-Side Rendering in Next.js? Think about getServerSideProps.",
+        "content": "CSR 向 client 端發送 HTML 和 JS 檔案，讓頁面的結構能創建和更新；SSR 在發送檔案到 client 端之前會先在 server 端生成出具有數據的檔案，然後再渲染給 client 端。getServerSideProps 是用於獲取外部數據並傳遞給頁面組件的函數，是 SSR 範例之一。"
+    },
+    {
+        "id": 5,
+        "count": 80,
+        "title": "Which coding styles did you follow when coding?",
+        "content": "Components 使用 PascalCase 規則；map 函式內的 key 值使用資料原本的 id 值而非 index（我的 VS Code 內有裝排版插件，所以空格、換行的部分沒有特別去注意）"
+    }
+]
