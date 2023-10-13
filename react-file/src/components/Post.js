@@ -117,13 +117,15 @@ const Post = ({ count, title, content }) => {
     // 切換按讚數
     // 沒按過會 +1，有按過會 -1
     const changeReply = () => {
-        if (replyActive) {
-            setReplyCount(replyCount - 1);
-            setReplyActive(false);
-        } else {
-            setReplyCount(replyCount + 1);
-            setReplyActive(true);
-        }
+        setReplyCount((prevReplyCount) => {
+            if (replyActive) {
+                return prevReplyCount - 1;
+            } else {
+                return prevReplyCount + 1;
+            }
+        });
+
+        setReplyActive((prevReplyActive) => !prevReplyActive);
     };
 
     return (
