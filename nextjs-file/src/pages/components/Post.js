@@ -68,7 +68,7 @@ export default function Post({ count, title, content }) {
                     className={`
                         w-full flex justify-center items-center
                         gap-1.5 px-4 py-1.5
-                        rounded-lg bg-blue-200
+                        rounded-lg bg-blue-200 dark:bg-blue-800
                     `}
                     onClick={changeReply}
                 >
