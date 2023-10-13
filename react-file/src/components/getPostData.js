@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import Post from "./Post.js";
-import posts from "./posts.json";
+import posts from "../data/posts.json";
 
 const PostsContainer = styled.div`
     display: flex;

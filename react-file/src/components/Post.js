@@ -7,7 +7,7 @@ import { faThumbsUp as faThumbUpActive } from "@fortawesome/free-solid-svg-icons
 
 const PostBox = styled.div`
     width: 30%;
-    max-height: 500px;
+    max-height: 600px;
     overflow-y: hidden;
 
     margin: 2% 1%;
@@ -52,11 +52,11 @@ const Content = styled.p`
 
     font-size: 1.25rem;
     text-indent: 2.5rem;
-    line-height: 1.5rem;
+    line-height: 1.5;
 
     /* 限制行數 */
     display: -webkit-box;
-    -webkit-line-clamp: 5;
+    -webkit-line-clamp: 8;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -130,7 +130,7 @@ const Post = ({ count, title, content }) => {
         <PostBox>
             <Title>{title}</Title>
             <Content>{content}</Content>
-            <Reply>
+            <Reply role="button">
                 <button onClick={changeReply}>
                     {/* icon 會根據是否有按讚而改變 */}
                     <FontAwesomeIcon
