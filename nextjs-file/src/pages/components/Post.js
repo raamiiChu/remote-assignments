@@ -50,7 +50,7 @@ export default function Post({ count, title, content }) {
             <p
                 className={`
                     my-4 py-1 text-base sm:text-xl 
-                    indent-8 sm:indent-10 line-clamp-8
+                    indent-8 sm:indent-10 line-clamp-[8]
                 `}
             >
                 {content}
